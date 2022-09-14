@@ -417,7 +417,16 @@ export default function Home(props) {
           <div className='w-full flex flex-col md:flex-row justify-start items-center gap-4 mb-4'>
             <div className='flex flex-col justify-between'>
               <label htmlFor='filterZona' className='text-sm font-semibold text-sky-800'>Pesquisar por Zona Eleitoral</label>
-              <input id='filterZona' className='border border-sky-600 rounded-md' type="text" value={searchZona} onChange={(e) => setSearchZona(e.target.value)} />
+              <input id='filterZona' className='border border-sky-600 rounded-md' type="text" value={searchZona} onChange={
+				(e) => {
+					// Prevent all non-numeric characters
+					if (e.target.value.match(/^[0-9]*$/)) {
+						setSearchZona(e.target.value)
+					} else {
+						setSearchZona('')
+					}
+				}
+				} />
             </div>
             <div className='flex flex-col justify-between'>
               <label htmlFor='filterSub' className='text-sm font-semibold text-sky-800'>Pesquisar por Subprefeitura</label>
