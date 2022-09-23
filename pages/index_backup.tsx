@@ -1,13 +1,7 @@
-import type { NextPage } from 'next'
-import { GetServerSideProps } from 'next'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import BasicInfo from '../components/BasicInfo'
-import Hero from '../components/Hero'
 import Layout from '../components/Layout/Layout'
-import axios from 'axios'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
   const data = [
 	{
@@ -375,8 +369,6 @@ export default function Home_Backup(props) {
   const [sort, setSort] = useState('')
   const [sortDirection, setSortDirection] = useState('asc')
   const dataprops = props.data
-
-  const router = useRouter()
  
   useEffect(() => {
     setFilteredData(

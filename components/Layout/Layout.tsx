@@ -20,8 +20,8 @@ const Layout = ({ children, ...props }: LayoutProps) => {
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         
-                <meta property="og:title" content="Title" />
-                <meta property="og:site_name" content="Title" />
+                <meta property="og:title" content="Zona Eleitoral - Subprefeituras" />
+                <meta property="og:site_name" content="Zona Eleitoral - Subprefeituras" />
                 <meta property="og:url" content="https://" />
                 <meta property="og:locale" content="en" />
                 <meta property="og:description" content="Zona Eleitoral - Subprefeituras"/>
@@ -30,20 +30,6 @@ const Layout = ({ children, ...props }: LayoutProps) => {
                 <link rel="canonical" href="https://" key="canonical" />
                 <link rel="icon" href="favicon.ico" />
             </Head>
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-        
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-                `}
-            </Script>
-            <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-                strategy="afterInteractive"
-            />
-
             <Header />
 
             <main className={`flex flex-col w-full h-full min-h-screen justify-start items-center bg-gray-100`}>

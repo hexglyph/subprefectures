@@ -1,365 +1,358 @@
-import type { NextPage } from 'next'
-import { GetServerSideProps } from 'next'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import BasicInfo from '../components/BasicInfo'
-import Hero from '../components/Hero'
 import Layout from '../components/Layout/Layout'
-import axios from 'axios'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
   const data = [
 	{
-		"zona":"1",
-		"suprefeitura":"ARICANDUVA / VILA FORMOSA",
-		"endereco":"Rua Atucuri, 699 – CEP 03411-000",
-		"laglong":""
+		"zona" : "253 - Tatuapé",
+		"suprefeitura" : "Aricanduva/Formosa/Carrão",
+		"endereco" : "Rua Atucuri, 699 - Vila Carrão",
+		"telefone" : "3396-0800"
 	},
 	{
-		"zona":"2",
-		"suprefeitura":"ARICANDUVA / VILA FORMOSA",
-		"endereco":"Rua Atucuri, 699 – CEP 03411-000",
-		"laglong":""
+		"zona" : "348 - Vila Formosa",
+		"suprefeitura" : "Aricanduva/Formosa/Carrão",
+		"endereco" : "Rua Atucuri, 699 - Vila Carrão",
+		"telefone" : "3396-0800"
 	},
 	{
-		"zona":"3",
-		"suprefeitura":"BUTANTÃ",
-		"endereco":"Rua Ulpiano da Costa Manso, 201 – CEP 05538-000",
-		"laglong":""
+		"zona" : "346 - Butantã",
+		"suprefeitura" : "Butantã",
+		"endereco" : "Rua Ulpiano da Costa Manso, 201",
+		"telefone" : "3397-4600"
 	},
 	{
-		"zona":"4",
-		"suprefeitura":"BUTANTÃ",
-		"endereco":"Rua Ulpiano da Costa Manso, 201 – CEP 05538-000",
-		"laglong":""
+		"zona" : "374 - Rio Pequeno",
+		"suprefeitura" : "Butantã",
+		"endereco" : "Rua Ulpiano da Costa Manso, 201",
+		"telefone" : "3397-4600"
 	},
 	{
-		"zona":"5",
-		"suprefeitura":"CAMPO LIMPO",
-		"endereco":"Rua Nossa Senhora do Bom Conselho, 59 – CEP 05763-470",
-		"laglong":""
+		"zona" : "020 - Valo Velho",
+		"suprefeitura" : "Campo Limpo",
+		"endereco" : "Rua Nossa Senhora do Bom Conselho, 59",
+		"telefone" : "3397-0500"
 	},
 	{
-		"zona":"6",
-		"suprefeitura":"CAMPO LIMPO",
-		"endereco":"Rua Nossa Senhora do Bom Conselho, 59 – CEP 05763-470",
-		"laglong":""
+		"zona" : "328 - Campo Limpo",
+		"suprefeitura" : "Campo Limpo",
+		"endereco" : "Rua Nossa Senhora do Bom Conselho, 59",
+		"telefone" : "3397-0500"
 	},
 	{
-		"zona":"20",
-		"suprefeitura":"CAPELA DO SOCORRO",
-		"endereco":"Rua Cassiano dos Santos, 499 – CEP 04827-000",
-		"laglong":""
+		"zona" : "373 - Capão Redondo",
+		"suprefeitura" : "Campo Limpo",
+		"endereco" : "Rua Nossa Senhora do Bom Conselho, 59",
+		"telefone" : "3397-0500"
 	},
 	{
-		"zona":"246",
-		"suprefeitura":"CAPELA DO SOCORRO",
-		"endereco":"Rua Cassiano dos Santos, 499 – CEP 04827-000",
-		"laglong":""
+		"zona" : "408 - Jd. São Luiz",
+		"suprefeitura" : "Campo Limpo",
+		"endereco" : "Rua Nossa Senhora do Bom Conselho, 59",
+		"telefone" : "3397-0500"
 	},
 	{
-		"zona":"247",
-		"suprefeitura":"CASA VERDE",
-		"endereco":"Avenida Ordem e Progresso, 1001 – CEP 02518-130",
-		"laglong":""
+		"zona" : "280 - Capela do Socorro",
+		"suprefeitura" : "Capela do Socorro",
+		"endereco" : "Rua Cassiano dos Santos, 499 Jardim Clipper",
+		"telefone" : "3397-2700"
 	},
 	{
-		"zona":"248",
-		"suprefeitura":"CASA VERDE",
-		"endereco":"Avenida Ordem e Progresso, 1001 – CEP 02518-130",
-		"laglong":""
+		"zona" : "371 - Grajaú",
+		"suprefeitura" : "Capela do Socorro",
+		"endereco" : "Rua Cassiano dos Santos, 499 Jardim Clipper",
+		"telefone" : "3397-2700"
 	},
 	{
-		"zona":"249",
-		"suprefeitura":"CIDADE ADEMAR",
-		"endereco":"Avenida Yervant Kissajikain, 416 – CEP 04657-000",
-		"laglong":""
+		"zona" : "255 - Casa Verde",
+		"suprefeitura" : "Casa Verde",
+		"endereco" : "Av. Ordem e Progresso, 1001 Ponte do Limão",
+		"telefone" : "2813-3250"
 	},
 	{
-		"zona":"250",
-		"suprefeitura":"CIDADE ADEMAR",
-		"endereco":"Avenida Yervant Kissajikain, 416 – CEP 04657-000",
-		"laglong":""
+		"zona" : "422 - Mandaqui",
+		"suprefeitura" : "Casa Verde",
+		"endereco" : "Av. Ordem e Progresso, 1001 Ponte do Limão",
+		"telefone" : "2813-3250"
 	},
 	{
-		"zona":"251",
-		"suprefeitura":"CIDADE TIRADENTES",
-		"endereco":"Rua Juá Mirim, s/n – CEP: 08490-800",
-		"laglong":""
+		"zona" : "351 - Cidade Ademar",
+		"suprefeitura" : "Cidade Ademar",
+		"endereco" : "Av. Yervant Kissajikian, 416 Vila Constância",
+		"telefone" : "5670-7000"
 	},
 	{
-		"zona":"252",
-		"suprefeitura":"CIDADE TIRADENTES",
-		"endereco":"Rua Juá Mirim, s/n – CEP: 08490-800",
-		"laglong":""
+		"zona" : "418 - Pedreira",
+		"suprefeitura" : "Cidade Ademar",
+		"endereco" : "Av. Yervant Kissajikian, 416 Vila Constância",
+		"telefone" : "5670-7000"
 	},
 	{
-		"zona":"253",
-		"suprefeitura":"ERMELINO MATARAZZO",
-		"endereco":"Avenida São Miguel, 5550 – CEP 03871-100",
-		"laglong":""
+		"zona" : "404 - Cidade Tiradentes",
+		"suprefeitura" : "Cidade Tiradentes",
+		"endereco" : "Rua Juá Mirim S/N Cidade Tiradentes",
+		"telefone" : "3396-0003"
 	},
 	{
-		"zona":"254",
-		"suprefeitura":"ERMELINO MATARAZZO",
-		"endereco":"Avenida São Miguel, 5550 – CEP 03871-100",
-		"laglong":""
+		"zona" : "326 - Ermelino Matarazzo",
+		"suprefeitura" : "Ermelino Matarazzo",
+		"endereco" : "Av. São Miguel, 5550",
+		"telefone" : "2114-0333"
 	},
 	{
-		"zona":"255",
-		"suprefeitura":"FREGUESIA DO Ó",
-		"endereco":"Avenida João Marcelino Branco, 95 – CEP 02610-000",
-		"laglong":""
+		"zona" : "392 - Ponte Rasa",
+		"suprefeitura" : "Ermelino Matarazzo",
+		"endereco" : "Av. São Miguel, 5550",
+		"telefone" : "2114-0333"
 	},
 	{
-		"zona":"256",
-		"suprefeitura":"FREGUESIA DO Ó",
-		"endereco":"Avenida João Marcelino Branco, 95 – CEP 02610-000",
-		"laglong":""
+		"zona" : "327 - Nossa Senhora do Ó",
+		"suprefeitura" : "Freguesia do Ó/Brasilândia",
+		"endereco" : "Av. João Marcelino Branco, 95",
+		"telefone" : "3981-5000"
 	},
 	{
-		"zona":"257",
-		"suprefeitura":"GUAIANASES",
-		"endereco":"Estrada Itaquera-Guaianases, 2565 – CEP 08420-000",
-		"laglong":""
+		"zona" : "376 - Brasilândia",
+		"suprefeitura" : "Freguesia do Ó/Brasilândia",
+		"endereco" : "Av. João Marcelino Branco, 95",
+		"telefone" : "3981-5000"
 	},
 	{
-		"zona":"258",
-		"suprefeitura":"GUAIANASES",
-		"endereco":"Estrada Itaquera-Guaianases, 2565 – CEP 08420-000",
-		"laglong":""
+		"zona" : "353 - Guaianazes",
+		"suprefeitura" : "Guaianases",
+		"endereco" : "Estrada Itaquera / Guaianases, 2561",
+		"telefone" : "2557-7099"
 	},
 	{
-		"zona":"259",
-		"suprefeitura":"IPIRANGA",
-		"endereco":"Rua Lino Coutinho, 444 – CEP 04207 000",
-		"laglong":""
+		"zona" : "405 - José Bonifácio",
+		"suprefeitura" : "Guaianases",
+		"endereco" : "Estrada Itaquera / Guaianases, 2561",
+		"telefone" : "2557-7099"
 	},
 	{
-		"zona":"260",
-		"suprefeitura":"IPIRANGA",
-		"endereco":"Rua Lino Coutinho, 444 – CEP 04207 000",
-		"laglong":""
+		"zona" : "260 - Ipiranga",
+		"suprefeitura" : "Ipiranga",
+		"endereco" : "Rua Lino Coutinho,  444",
+		"telefone" : "2808-3600"
 	},
 	{
-		"zona":"280",
-		"suprefeitura":"ITAIM PAULISTA",
-		"endereco":"Avenida Marechal Tito 3012, CEP: 08115-000",
-		"laglong":""
+		"zona" : "413 - Cursino",
+		"suprefeitura" : "Ipiranga",
+		"endereco" : "Rua Lino Coutinho,  444",
+		"telefone" : "2808-3600"
 	},
 	{
-		"zona":"320",
-		"suprefeitura":"ITAIM PAULISTA",
-		"endereco":"Avenida Marechal Tito 3012, CEP: 08115-000",
-		"laglong":""
+		"zona" : "352 - Itaim Paulista",
+		"suprefeitura" : "Itaim Paulista",
+		"endereco" : "Av Marechal Tito, 3012 Itaim Paulista",
+		"telefone" : "2561-6064"
 	},
 	{
-		"zona":"325",
-		"suprefeitura":"ITAQUERA",
-		"endereco":"Rua Augusto Carlos Bauman, 851 CEP: 08210-590",
-		"laglong":""
+		"zona" : "397 - Jd. Helena",
+		"suprefeitura" : "Itaim Paulista",
+		"endereco" : "Av Marechal Tito, 3012 Itaim Paulista",
+		"telefone" : "2561-6064"
 	},
 	{
-		"zona":"326",
-		"suprefeitura":"ITAQUERA",
-		"endereco":"Rua Augusto Carlos Bauman, 851 CEP: 08210-590",
-		"laglong":""
+		"zona" : "248 - Itaquera",
+		"suprefeitura" : "Itaquera",
+		"endereco" : "Rua Augusto Carlos Bauman, 851",
+		"telefone" : "2944-6555"
 	},
 	{
-		"zona":"327",
-		"suprefeitura":"JABAQUARA",
-		"endereco":"Avenida Engenheiro Armando de Arruda Pereira, 2314 – CEP 04309-011",
-		"laglong":""
+		"zona" : "417 - Parque do Carmo",
+		"suprefeitura" : "Itaquera",
+		"endereco" : "Rua Augusto Carlos Bauman, 851",
+		"telefone" : "2944-6555"
 	},
 	{
-		"zona":"328",
-		"suprefeitura":"JABAQUARA",
-		"endereco":"Avenida Engenheiro Armando de Arruda Pereira, 2314 – CEP 04309-011",
-		"laglong":""
+		"zona" : "320 - Jabaquara",
+		"suprefeitura" : "Jabaquara",
+		"endereco" : "Av. Eng. Armando Arruda Pereira, 2314",
+		"telefone" : "3397-3200"
 	},
 	{
-		"zona":"346",
-		"suprefeitura":"JAÇANÃ / TREMEMBÉ",
-		"endereco":"Avenida Luis Stamatis, 300 – CEP 02260-000",
-		"laglong":""
+		"zona" : "256 -  Tucuruvi",
+		"suprefeitura" : "Jaçanã/Tremembé",
+		"endereco" : "Av. Luis Stamatis, 300",
+		"telefone" : "3397-1000"
 	},
 	{
-		"zona":"347",
-		"suprefeitura":"JAÇANÃ / TREMEMBÉ",
-		"endereco":"Avenida Luis Stamatis, 300 – CEP 02260-000",
-		"laglong":""
+		"zona" : "349 - Jaçanã",
+		"suprefeitura" : "Jaçanã/Tremembé",
+		"endereco" : "Av. Luis Stamatis, 300",
+		"telefone" : "3397-1000"
 	},
 	{
-		"zona":"348",
-		"suprefeitura":"LAPA",
-		"endereco":"Rua Guaicurus, 1000 – CEP 05033-002",
-		"laglong":""
+		"zona" : "250 - Lapa",
+		"suprefeitura" : "Lapa",
+		"endereco" : "Rua Guaicurus, 1000",
+		"telefone" : "3396-7500"
 	},
 	{
-		"zona":"349",
-		"suprefeitura":"LAPA",
-		"endereco":"Rua Guaicurus, 1000 – CEP 05033-002",
-		"laglong":""
+		"zona" : "372 - Piraporinha",
+		"suprefeitura" : "M´Boi Mirim",
+		"endereco" : "Av. Guarapiranga, 1695 Parque Alves de Lima",
+		"telefone" : "3396-8400"
 	},
 	{
-		"zona":"350",
-		"suprefeitura":"M'BOI MIRIM",
-		"endereco":"Avenida Guarapiranga, 1265 – CEP 04902-903",
-		"laglong":""
+		"zona" : "004 - Mooca",
+		"suprefeitura" : "Moóca",
+		"endereco" : "Rua Taquari, 549 - Moóca",
+		"telefone" : "2292-2122"
 	},
 	{
-		"zona":"351",
-		"suprefeitura":"M'BOI MIRIM",
-		"endereco":"Avenida Guarapiranga, 1265 – CEP 04902-903",
-		"laglong":""
+		"zona" : "381 - Parelheiros",
+		"suprefeitura" : "Parelheiros",
+		"endereco" : "Estrada Ecoturística de Parelheiros, 5252 ",
+		"telefone" : "5926-6500"
 	},
 	{
-		"zona":"352",
-		"suprefeitura":"MOOCA",
-		"endereco":"Rua Taquari, 549 – CEP 03166-000",
-		"laglong":""
+		"zona" : "252 - Penha",
+		"suprefeitura" : "Penha",
+		"endereco" : "Rua Candapuí, 492",
+		"telefone" : "3397-5100"
 	},
 	{
-		"zona":"353",
-		"suprefeitura":"MOOCA",
-		"endereco":"Rua Taquari, 549 – CEP 03166-000",
-		"laglong":""
+		"zona" : "347 - Vila Matilde",
+		"suprefeitura" : "Penha",
+		"endereco" : "Rua Candapuí, 492",
+		"telefone" : "3397-5100"
 	},
 	{
-		"zona":"371",
-		"suprefeitura":"PARELHEIROS",
-		"endereco":"Estrada Ecoturística de Parelheiros, 5252 – CEP 04825-000",
-		"laglong":""
+		"zona" : "390 - Cangaíba",
+		"suprefeitura" : "Penha",
+		"endereco" : "Rua Candapuí, 492",
+		"telefone" : "3397-5100"
 	},
 	{
-		"zona":"372",
-		"suprefeitura":"PARELHEIROS",
-		"endereco":"Estrada Ecoturística de Parelheiros, 5252 – CEP 04825-000",
-		"laglong":""
+		"zona" : "389 - Perus",
+		"suprefeitura" : "Perus",
+		"endereco" : "Rua Ylidio Figueiredo, 349",
+		"telefone" : "3396-8600"
 	},
 	{
-		"zona":"373",
-		"suprefeitura":"PENHA",
-		"endereco":"Rua Candapuí, 492 – CEP 03621-000",
-		"laglong":""
+		"zona" : "251 - Pinheiros",
+		"suprefeitura" : "Pinheiros",
+		"endereco" : "Av. Nações Unidas, 7123",
+		"telefone" : "3095-9595"
 	},
 	{
-		"zona":"374",
-		"suprefeitura":"PENHA",
-		"endereco":"Rua Candapuí, 492 – CEP 03621-000",
-		"laglong":""
+		"zona" : "325 - Pirituba",
+		"suprefeitura" : "Pirituba/Jaraguá",
+		"endereco" : "Rua Dr. Felipe Pinel, 12 - Pirituba",
+		"telefone" : "3971-2620"
 	},
 	{
-		"zona":"375",
-		"suprefeitura":"PERUS",
-		"endereco":"Rua Ylídio Figueiredo, 349 – CEP 05204-020",
-		"laglong":""
+		"zona" : "403 - Jaraguá",
+		"suprefeitura" : "Pirituba/Jaraguá",
+		"endereco" : "Rua Dr. Felipe Pinel, 12 - Pirituba",
+		"telefone" : "3971-2620"
 	},
 	{
-		"zona":"376",
-		"suprefeitura":"PERUS",
-		"endereco":"Rua Ylídio Figueiredo, 349 – CEP 05204-020",
-		"laglong":""
+		"zona" : "249 - Santana",
+		"suprefeitura" : "Santana/Tucuruvi",
+		"endereco" : "Av. Tucuruvi, 808",
+		"telefone" : "2987-3844"
 	},
 	{
-		"zona":"381",
-		"suprefeitura":"PINHEIROS",
-		"endereco":"Av. Nações Unidas, 7123 – CEP 05425-070",
-		"laglong":""
+		"zona" : "246 - Santo Amaro",
+		"suprefeitura" : "Santo Amaro",
+		"endereco" : "Praça Floriano Peixoto, 54",
+		"telefone" : "3396-6100"
 	},
 	{
-		"zona":"389",
-		"suprefeitura":"PINHEIROS",
-		"endereco":"Av. Nações Unidas, 7123 – CEP 05425-070",
-		"laglong":""
+		"zona" : "258 - Indianópolis",
+		"suprefeitura" : "Santo Amaro",
+		"endereco" : "Praça Floriano Peixoto, 54",
+		"telefone" : "3396-6100"
 	},
 	{
-		"zona":"390",
-		"suprefeitura":"PIRITUBA",
-		"endereco":"Rua Luis Carneiro, 193 / 197  – CEP 02936-110",
-		"laglong":""
+		"zona" : "375 - São Mateus",
+		"suprefeitura" : "São Mateus",
+		"endereco" : "Av. Ragueb Chohfi, 1400",
+		"telefone" : "3397-1100"
 	},
 	{
-		"zona":"392",
-		"suprefeitura":"PIRITUBA",
-		"endereco":"Rua Luis Carneiro, 193 / 197  – CEP 02936-110",
-		"laglong":""
+		"zona" : "247 - São Miguel",
+		"suprefeitura" : "São Miguel",
+		"endereco" : "Rua Dona Ana Flora Pinheiro de Sousa, 76",
+		"telefone" : "2297-9200"
 	},
 	{
-		"zona":"397",
-		"suprefeitura":"SANTANA / TUCURUVI",
-		"endereco":"Avenida Tucuruvi, 808 – CEP 02304-002",
-		"laglong":""
+		"zona" : "398 -  Vila Jacuí",
+		"suprefeitura" : "São Miguel",
+		"endereco" : "Rua Dona Ana Flora Pinheiro de Sousa, 76",
+		"telefone" : "2297-9200"
 	},
 	{
-		"zona":"398",
-		"suprefeitura":"SANTANA / TUCURUVI",
-		"endereco":"Avenida Tucuruvi, 808 – CEP 02304-002",
-		"laglong":""
+		"zona" : "350 - Sapopemba",
+		"suprefeitura" : "Sapopemba",
+		"endereco" : "Av. Sapopemba, 9.064",
+		"telefone" : "2705-1089"
 	},
 	{
-		"zona":"403",
-		"suprefeitura":"SANTO AMARO",
-		"endereco":"Praça Floriano Peixoto, 54 – CEP 04751-030",
-		"laglong":""
+		"zona" : "421 - Teotônio Vilela",
+		"suprefeitura" : "Sapopemba",
+		"endereco" : "Av. Sapopemba, 9.064",
+		"telefone" : "2705-1089"
 	},
 	{
-		"zona":"404",
-		"suprefeitura":"SANTO AMARO",
-		"endereco":"Praça Floriano Peixoto, 54 – CEP 04751-030",
-		"laglong":""
+		"zona" : "001- Bela Vista",
+		"suprefeitura" : "Sé",
+		"endereco" : "Rua Alvares Penteado, 49 - Centro",
+		"telefone" : "3397-1200"
 	},
 	{
-		"zona":"405",
-		"suprefeitura":"SÃO MATEUS",
-		"endereco":"Rua Ragueb Chohfi, 1.400 – CEP 08375-000",
-		"laglong":""
+		"zona" : "002- Perdizes",
+		"suprefeitura" : "Sé",
+		"endereco" : "Rua Alvares Penteado, 49 - Centro",
+		"telefone" : "3397-1200"
 	},
 	{
-		"zona":"408",
-		"suprefeitura":"SÃO MIGUEL",
-		"endereco":"Rua Ana Flora Pinheiro de Sousa, 76 – CEP 08060-150",
-		"laglong":""
+		"zona" : "003 - Santa Ifigênia",
+		"suprefeitura" : "Sé",
+		"endereco" : "Rua Alvares Penteado, 49 - Centro",
+		"telefone" : "3397-1200"
 	},
 	{
-		"zona":"413",
-		"suprefeitura":"SAPOPEMBA",
-		"endereco":"Avenida Sapopemba, 9.064 – CEP 03988-010",
-		"laglong":""
+		"zona" : "254 - Vila Maria",
+		"suprefeitura" : "Vila Maria/Vila Guilherme",
+		"endereco" : "Rua General Mendes, 111",
+		"telefone" : "2967-8100"
 	},
 	{
-		"zona":"417",
-		"suprefeitura":"SÉ",
-		"endereco":"Rua Álvares Penteado, 49",
-		"laglong":""
+		"zona" : "420 - Vila Sabrina",
+		"suprefeitura" : "Vila Maria/Vila Guilherme",
+		"endereco" : "Rua General Mendes, 111",
+		"telefone" : "2967-8100"
 	},
 	{
-		"zona":"418",
-		"suprefeitura":"VILA MARIA / VILA GUILHERME",
-		"endereco":"Rua General Mendes, 111 – CEP 02127-020",
-		"laglong":""
+		"zona" : "005 - Jd. Paulista",
+		"suprefeitura" : "Vila Mariana",
+		"endereco" : "Rua José de Magalhães, 500 Vila Clementino",
+		"telefone" : "3397-4100"
 	},
 	{
-		"zona":"420",
-		"suprefeitura":"VILA MARIANA",
-		"endereco":"Rua José de Magalhães, 500 – CEP 04026-090",
-		"laglong":""
+		"zona" : "006 - Vila Mariana",
+		"suprefeitura" : "Vila Mariana",
+		"endereco" : "Rua José de Magalhães, 500 Vila Clementino",
+		"telefone" : "3397-4100"
 	},
 	{
-		"zona":"421",
-		"suprefeitura":"VILA PRUDENTE",
-		"endereco":"Avenida do Oratório, 172 – CEP 03220-000",
-		"laglong":""
+		"zona" : "259 - Saúde",
+		"suprefeitura" : "Vila Mariana",
+		"endereco" : "Rua José de Magalhães, 500 Vila Clementino",
+		"telefone" : "3397-4100"
 	},
 	{
-		"zona":"422",
-		"suprefeitura":"VILA PRUDENTE",
-		"endereco":"Avenida do Oratório, 172 – CEP 03220-000",
-		"laglong":""
+		"zona" : "257 - Vila Prudente",
+		"suprefeitura" : "Vila Prudente",
+		"endereco" : "Av. Do Oratório, 172",
+		"telefone" : "3397-0800"
 	}
 ]
-
   return {
     props: {
       data,
@@ -375,8 +368,6 @@ export default function Home(props) {
   const [sort, setSort] = useState('')
   const [sortDirection, setSortDirection] = useState('asc')
   const dataprops = props.data
-
-  const router = useRouter()
  
   useEffect(() => {
     setFilteredData(
@@ -415,104 +406,45 @@ export default function Home(props) {
         <h2 className='text-2xl font-semibold text-sky-800'>Lista de Zonas Eleitorais</h2>
         <div className='w-full flex flex-col p-2'>
           <div className='w-full flex flex-col md:flex-row justify-start items-center gap-4 mb-4'>
+
             <div className='flex flex-col justify-between'>
               <label htmlFor='filterZona' className='text-sm font-semibold text-sky-800'>Pesquisar por Zona Eleitoral</label>
               <input id='filterZona' className='border border-sky-600 rounded-md' type="text" value={searchZona} onChange={
 				(e) => {
-					// Prevent all non-numeric characters
-					if (e.target.value.match(/^[0-9]*$/)) {
-						setSearchZona(e.target.value)
-					} else {
-						setSearchZona('')
-					}
+				  setSearchZona(e.target.value)
 				}
-				} />
+			  } />
             </div>
+
             <div className='flex flex-col justify-between'>
               <label htmlFor='filterSub' className='text-sm font-semibold text-sky-800'>Pesquisar por Subprefeitura</label>
               <input id='filterSub' className='border border-sky-600 rounded-md' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
 
-            <div className='flex flex-col justify-between'>
-              <label htmlFor='sortSub' className='text-sm font-semibold text-sky-800'>Ordenar por Subprefeitura</label>
-              <select id='sortSub' className='border border-sky-600 rounded-md' value={sort} onChange={(e) => setSort(e.target.value)}>
-                <option value="">-</option>
-                <option value="zona">Zona</option>
-                <option value="suprefeitura">Suprefeitura</option>
-                <option value="endereco">Endereço</option>
-              </select>
-            </div>
-            <div className='flex flex-col justify-between'>
-              <label htmlFor='sortDirection' className='w-full text-sm font-semibold text-sky-800'>Ordenar</label>
-              <select className='border border-sky-600 rounded-md' id='sortDirection' value={sortDirection} onChange={(e) => setSortDirection(e.target.value)}>
-                <option value="asc">Ascendente</option>
-                <option value="desc">Descendente</option>
-              </select>
+			<div className='flex flex-col justify-between'>
+              <button className='text-gray-50 p-1 mt-5 bg-gray-600 rounded-md' onClick={() => {
+				setFilteredData(data)
+				setSearch('')
+				setSearchZona('')
+				}}>Limpar</button>
             </div>
           </div>
-
-          <div className='w-full flex flex-col md:flex-row justify-start items-center gap-4'>
-            <button className='text-gray-50 p-1 bg-sky-600 rounded-md' onClick={() => {
-              const filteredData = data.filter((item) => {
-                return item.zona.toLowerCase().includes(search.toLowerCase())
-              })
-
-              if (sort === 'zona') {
-                filteredData.sort((a, b) => {
-                  if (sortDirection === 'asc') {
-                    return a.zona - b.zona
-                  } else {
-                    return b.zona - a.zona
-                  }
-                })
-              }
-
-              if (sort === 'suprefeitura') {
-                filteredData.sort((a, b) => {
-                  if (sortDirection === 'asc') {
-                    return a.suprefeitura.localeCompare(b.suprefeitura)
-                  } else {
-                    return b.suprefeitura.localeCompare(a.suprefeitura)
-                  }
-                })
-              }
-
-              if (sort === 'endereco') {
-                filteredData.sort((a, b) => {
-                  if (sortDirection === 'asc') {
-                    return a.endereco.localeCompare(b.endereco)
-                  } else {
-                    return b.endereco.localeCompare(a.endereco)
-                  }
-                })
-              }
-
-              setFilteredData(filteredData)
-            }}>Filtrar</button>
-
-            <button className='text-gray-50 p-1 bg-gray-600 rounded-md' onClick={() => {
-              setFilteredData(data)
-              setSearch('')
-              setSort('')
-              setSortDirection('asc')
-            }}>Limpar</button>
-          </div>
-          
-          
       </div>
       <div className='w-full h-full bg-gray-200 rounded-md p-2 my-4'>
         <div className='w-full flex flex-row font-semibold text-gray-50 bg-gray-900 rounded-md'>
-          <div className='w-2/12 md:w-1/12 px-1'><span>Zona</span></div>
-          <div className='w-6/12 md:w-5/12 px-1'><span>Suprefeitura</span></div>
-          <div className='w-6/12 md:w-7/12 px-1'><span>Endereço</span></div>
+          <div className='w-2/12 md:w-3/12 px-1'><span>Zona</span></div>
+          <div className='w-5/12 md:w-4/12 px-1'><span>Suprefeitura</span></div>
+          <div className='w-5/12 md:w-5/12 px-1'><span>Endereço</span></div>
+		  <div className='w-2/12 md:w-1/12 px-1'><span>Telefone</span></div>
         </div>
 
         <div className='w-full flex flex-col text-black'>
           {filteredData.map((item) => (
             <div className='w-full flex flex-row bg-sky-400/25 my-1 rounded-md' key={item.zona}>
-              <div className='w-2/12 md:w-1/12 px-1 font-medium'><span>{item.zona}</span></div>
-              <div className='w-6/12 md:w-5/12 px-1'><span>{item.suprefeitura}</span></div>
-              <div className='w-6/12 md:w-7/12 px-1'><span>{item.endereco}</span></div>
+              <div className='w-2/12 md:w-3/12 px-1 font-medium'><span>{item.zona}</span></div>
+              <div className='w-5/12 md:w-4/12 px-1'><span>{item.suprefeitura}</span></div>
+              <div className='w-5/12 md:w-5/12 px-1'><span>{item.endereco}</span></div>
+			  <div className='w-2/12 md:w-1/12 px-1'><span>{item.telefone}</span></div>
             </div>
           ))}
         </div>
