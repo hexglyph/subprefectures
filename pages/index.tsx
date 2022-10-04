@@ -6,13 +6,13 @@ export async function getStaticProps(context) {
   const data = [
 	{
 		"zona" : "253 - Tatuapé",
-		"suprefeitura" : "Aricanduva/Formosa/Carrão",
+		"suprefeitura" : "Aricanduva Formosa Carrão",
 		"endereco" : "Rua Atucuri, 699 - Vila Carrão",
 		"telefone" : "3396-0800"
 	},
 	{
 		"zona" : "348 - Vila Formosa",
-		"suprefeitura" : "Aricanduva/Formosa/Carrão",
+		"suprefeitura" : "Aricanduva Formosa Carrão",
 		"endereco" : "Rua Atucuri, 699 - Vila Carrão",
 		"telefone" : "3396-0800"
 	},
@@ -108,13 +108,13 @@ export async function getStaticProps(context) {
 	},
 	{
 		"zona" : "327 - Nossa Senhora do Ó",
-		"suprefeitura" : "Freguesia do Ó/Brasilândia",
+		"suprefeitura" : "Freguesia do Ó Brasilândia",
 		"endereco" : "Av. João Marcelino Branco, 95",
 		"telefone" : "3981-5000"
 	},
 	{
 		"zona" : "376 - Brasilândia",
-		"suprefeitura" : "Freguesia do Ó/Brasilândia",
+		"suprefeitura" : "Freguesia do Ó Brasilândia",
 		"endereco" : "Av. João Marcelino Branco, 95",
 		"telefone" : "3981-5000"
 	},
@@ -174,13 +174,13 @@ export async function getStaticProps(context) {
 	},
 	{
 		"zona" : "256 -  Tucuruvi",
-		"suprefeitura" : "Jaçanã/Tremembé",
+		"suprefeitura" : "Jaçanã Tremembé",
 		"endereco" : "Av. Luis Stamatis, 300",
 		"telefone" : "3397-1000"
 	},
 	{
 		"zona" : "349 - Jaçanã",
-		"suprefeitura" : "Jaçanã/Tremembé",
+		"suprefeitura" : "Jaçanã Tremembé",
 		"endereco" : "Av. Luis Stamatis, 300",
 		"telefone" : "3397-1000"
 	},
@@ -192,7 +192,7 @@ export async function getStaticProps(context) {
 	},
 	{
 		"zona" : "372 - Piraporinha",
-		"suprefeitura" : "M´Boi Mirim",
+		"suprefeitura" : "M'Boi Mirim",
 		"endereco" : "Av. Guarapiranga, 1695 Parque Alves de Lima",
 		"telefone" : "3396-8400"
 	},
@@ -240,19 +240,19 @@ export async function getStaticProps(context) {
 	},
 	{
 		"zona" : "325 - Pirituba",
-		"suprefeitura" : "Pirituba/Jaraguá",
+		"suprefeitura" : "Pirituba Jaraguá",
 		"endereco" : "Rua Dr. Felipe Pinel, 12 - Pirituba",
 		"telefone" : "3971-2620"
 	},
 	{
 		"zona" : "403 - Jaraguá",
-		"suprefeitura" : "Pirituba/Jaraguá",
+		"suprefeitura" : "Pirituba Jaraguá",
 		"endereco" : "Rua Dr. Felipe Pinel, 12 - Pirituba",
 		"telefone" : "3971-2620"
 	},
 	{
 		"zona" : "249 - Santana",
-		"suprefeitura" : "Santana/Tucuruvi",
+		"suprefeitura" : "Santana Tucuruvi",
 		"endereco" : "Av. Tucuruvi, 808",
 		"telefone" : "2987-3844"
 	},
@@ -318,13 +318,13 @@ export async function getStaticProps(context) {
 	},
 	{
 		"zona" : "254 - Vila Maria",
-		"suprefeitura" : "Vila Maria/Vila Guilherme",
+		"suprefeitura" : "Vila Maria Vila Guilherme",
 		"endereco" : "Rua General Mendes, 111",
 		"telefone" : "2967-8100"
 	},
 	{
 		"zona" : "420 - Vila Sabrina",
-		"suprefeitura" : "Vila Maria/Vila Guilherme",
+		"suprefeitura" : "Vila Maria Vila Guilherme",
 		"endereco" : "Rua General Mendes, 111",
 		"telefone" : "2967-8100"
 	},
@@ -365,7 +365,7 @@ export default function Home(props) {
   const [search, setSearch] = useState('')
   const [searchZona, setSearchZona] = useState('')
   const [filteredData, setFilteredData] = useState(data)
-  const [sort, setSort] = useState('')
+  const [sort, setSort] = useState('suprefeitura')
   const [sortDirection, setSortDirection] = useState('asc')
   const dataprops = props.data
  
@@ -423,7 +423,7 @@ export default function Home(props) {
 
 			<div className='flex flex-col justify-between'>
               <button className='text-gray-50 p-1 mt-5 bg-gray-600 rounded-md' onClick={() => {
-				setFilteredData(data)
+				setSort('suprefeitura')
 				setSearch('')
 				setSearchZona('')
 				}}>Limpar</button>
