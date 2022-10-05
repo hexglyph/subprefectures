@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+/*const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   swcMinify: true,
@@ -14,6 +14,15 @@ const nextConfig = {
       '/': { page: '/' },
     }
   }
+}
+
+module.exports = nextConfig*/
+
+
+
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
 module.exports = nextConfig

@@ -406,7 +406,7 @@ export default function Home(props) {
         <h2 className='text-lg md:text-2xl font-semibold text-sky-800'>Lista de Zonas Eleitorais</h2>
         <div className='w-full flex flex-col p-2'>
 			<div className='relative w-full flex flex-col md:flex-row justify-start items-center gap-4 mb-4'>
-				<div className='w-full h-32 md:h-auto flex flex-col justify-between border rounded border-sky-800 bg-sky-600/10 overflow-y-scroll md:overflow-auto p-2 pb-8'>
+				<div className='w-full h-32 md:h-auto flex flex-col justify-between border rounded border-sky-800 bg-sky-600/10 overflow-y-scroll md:overflow-auto p-2 pb-8 md:pb-2'>
 					<p>
 						O Eleitor da Cidade de São Paulo pode votar em qualquer Subprefeitura, mas pode pesquisar pelo local mais próximo digitando o número de sua Zona Eleitoral que consta em seu Título de Eleitor, sendo o resultado o endereço da Subprefeitura. A busca também pode ser feita pela Subprefeitura.
 						<br /><br />
