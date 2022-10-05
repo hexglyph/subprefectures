@@ -121,13 +121,13 @@ export async function getStaticProps(context) {
 	{
 		"zona" : "353 - Guaianazes",
 		"suprefeitura" : "Guaianases",
-		"endereco" : "Estrada Itaquera / Guaianases, 2561",
+		"endereco" : "Rua Hipólito de Camargo, 479, Vila Lourdes, Guaianases",
 		"telefone" : "2557-7099"
 	},
 	{
 		"zona" : "405 - José Bonifácio",
 		"suprefeitura" : "Guaianases",
-		"endereco" : "Estrada Itaquera / Guaianases, 2561",
+		"endereco" : "Rua Hipólito de Camargo, 479, Vila Lourdes, Guaianases",
 		"telefone" : "2557-7099"
 	},
 	{
@@ -402,27 +402,41 @@ export default function Home(props) {
   
   return (
     <Layout>
-      <div className='w-4/5 h-full p-2'>
-        <h2 className='text-2xl font-semibold text-sky-800'>Lista de Zonas Eleitorais</h2>
+      <div className='w-full md:w-4/5 h-full p-2'>
+        <h2 className='text-lg md:text-2xl font-semibold text-sky-800'>Lista de Zonas Eleitorais</h2>
         <div className='w-full flex flex-col p-2'>
+			<div className='relative w-full flex flex-col md:flex-row justify-start items-center gap-4 mb-4'>
+				<div className='w-full h-32 md:h-auto flex flex-col justify-between border rounded border-sky-800 bg-sky-600/10 overflow-y-scroll md:overflow-auto p-2 pb-8'>
+					<p>
+						O Eleitor da Cidade de São Paulo pode votar em qualquer Subprefeitura, mas pode pesquisar pelo local mais próximo digitando o número de sua Zona Eleitoral que consta em seu Título de Eleitor, sendo o resultado o endereço da Subprefeitura. A busca também pode ser feita pela Subprefeitura.
+						<br /><br />
+						Serão admitidos exclusivamente Eleitores com Título de eleitor da Cidade de São Paulo, sendo necessário apresentar o Título de Eleito ou e-Título ou Comprovante de votação, que contenha o número do Título e Zona Eleitoral, acompanhado de documento de identidade oficial com foto.
+					</p>
+					<div className='absolute left-0 right-0 bottom-0 w-full bg-sky-600/90 text-center rounded-b md:hidden'>
+						<p className='text-white'>Arraste para ler mais</p>
+					</div>
+				</div>
+			</div>
           <div className='w-full flex flex-col md:flex-row justify-start items-center gap-4 mb-4'>
 
-            <div className='flex flex-col justify-between'>
+			
+
+            <div className='w-full flex flex-col justify-between'>
               <label htmlFor='filterZona' className='text-sm font-semibold text-sky-800'>Pesquisar por Zona Eleitoral</label>
-              <input id='filterZona' className='border border-sky-600 rounded-md' type="text" value={searchZona} onChange={
+              <input id='filterZona' className='w-full border border-sky-600 rounded-md' type="text" value={searchZona} onChange={
 				(e) => {
 				  setSearchZona(e.target.value)
 				}
 			  } />
             </div>
 
-            <div className='flex flex-col justify-between'>
+            <div className='w-full flex flex-col justify-between'>
               <label htmlFor='filterSub' className='text-sm font-semibold text-sky-800'>Pesquisar por Subprefeitura</label>
-              <input id='filterSub' className='border border-sky-600 rounded-md' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+              <input id='filterSub' className='w-full border border-sky-600 rounded-md' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
 
-			<div className='flex flex-col justify-between'>
-              <button className='text-gray-50 p-1 mt-5 bg-gray-600 rounded-md' onClick={() => {
+			<div className='w-full flex flex-col justify-between'>
+              <button className='w-full md:w-1/3 text-gray-50 p-1 mt-5 bg-gray-600 rounded-md' onClick={() => {
 				setSort('suprefeitura')
 				setSearch('')
 				setSearchZona('')
@@ -431,20 +445,20 @@ export default function Home(props) {
           </div>
       </div>
       <div className='w-full h-full bg-gray-200 rounded-md p-2 my-4'>
-        <div className='w-full flex flex-row font-semibold text-gray-50 bg-gray-900 rounded-md'>
-          <div className='w-2/12 md:w-3/12 px-1'><span>Zona</span></div>
-          <div className='w-5/12 md:w-4/12 px-1'><span>Suprefeitura</span></div>
-          <div className='w-5/12 md:w-5/12 px-1'><span>Endereço</span></div>
-		  <div className='w-2/12 md:w-1/12 px-1'><span>Telefone</span></div>
+        <div className='w-full flex flex-col md:flex-row font-semibold text-gray-50 bg-gray-900 rounded-md p-2'>
+          <div className='w-12/12 md:w-3/12 px-1'><span>Zona</span></div>
+          <div className='w-12/12 md:w-4/12 px-1'><span>Suprefeitura</span></div>
+          <div className='w-12/12 md:w-5/12 px-1'><span>Endereço</span></div>
+		  <div className='w-12/12 md:w-1/12 px-1'><span>Telefone</span></div>
         </div>
 
         <div className='w-full flex flex-col text-black'>
           {filteredData.map((item) => (
-            <div className='w-full flex flex-row bg-sky-400/25 my-1 rounded-md' key={item.zona}>
-              <div className='w-2/12 md:w-3/12 px-1 font-medium'><span>{item.zona}</span></div>
-              <div className='w-5/12 md:w-4/12 px-1'><span>{item.suprefeitura}</span></div>
-              <div className='w-5/12 md:w-5/12 px-1'><span>{item.endereco}</span></div>
-			  <div className='w-2/12 md:w-1/12 px-1'><span>{item.telefone}</span></div>
+            <div className='w-full flex flex-col md:flex-row bg-sky-400/25 my-1 rounded-md p-2 md:p-1' key={item.zona}>
+              <div className='w-12/12 md:w-3/12 px-1 font-medium'><span>{item.zona}</span></div>
+              <div className='w-12/12 md:w-4/12 px-1'><span>{item.suprefeitura}</span></div>
+              <div className='w-12/12 md:w-5/12 px-1'><span>{item.endereco}</span></div>
+			  <div className='w-12/12 md:w-1/12 px-1'><span>{item.telefone}</span></div>
             </div>
           ))}
         </div>
